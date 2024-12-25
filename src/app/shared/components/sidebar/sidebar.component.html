@@ -1,0 +1,11 @@
+<div class="bg-dark border-right p-3" id="sidebar">
+  <h3 class="text-white">GifsApp</h3>
+  <hr>
+
+
+  <div class="list-group list-reset">
+    <button (click)="obtenerGifsporHistorial(elements)" *ngFor="let elements of getTags()"  class="list-gtoup-item list-group-item-action btn btn-primary text-light mt-2">
+      {{elements}}
+    </button>
+  </div>
+</div>
