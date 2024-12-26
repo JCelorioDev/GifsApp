@@ -24,6 +24,6 @@ export class SidebarComponent {
   }
 
   obtenerGifsporHistorial(name:string){
-    this.gifsService.searchTag(name);
+    this.gifsService.searchTag(name, true);
   }
 }

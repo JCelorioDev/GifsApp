@@ -21,18 +21,17 @@ export class GifsService {
 
   }
 
-  get tagsHistory() {
-    const tags = localStorage.getItem('tags');
-    if (tags) {
-      return JSON.parse(tags); // Seguro porque ya verificamos que no es null
-    }
-    return [];
+  get tagsHistory(){
+    return JSON.parse(localStorage.getItem('tags')!);
   }
 
-   searchTag(tag:string){
+   searchTag(tag:string, initial=false){
     if (tag.length == 0) return;
 
-    this.organizeHistory(tag);
+    if (!initial) {
+      this.organizeHistory(tag);
+    }
+
     const params = new HttpParams().set('api_key', this.apiKey).set('limit', '8').set('q', tag)
 
     this.httpClient.get<SearchResponse>(`${this.api_url}search`, {params}).subscribe(resp => {
@@ -54,4 +53,5 @@ export class GifsService {
 
     localStorage.setItem('tags', JSON.stringify(this._tagsHistory));
   }
+
 }

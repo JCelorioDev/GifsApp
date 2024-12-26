@@ -14,13 +14,15 @@ export class CardListComponent {
 
   @Input() gifs!: Gif[];
 
-  constructor(private gifsSeervice:GifsService){
+  constructor(private gifsService:GifsService){
 
   }
 
 
 
   ngOnInit():void{
+    const firstTag = JSON.parse(localStorage.getItem('tags')!);
+    this.gifsService.searchTag(firstTag[0], true);
   }
 
 
